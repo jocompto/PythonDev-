@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>HTTP Request against a Server</title>
+    <style>
+      body {
+        font-family: Arial;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h3>HTTP Request against a Server</h3>
+
+    <p>
+      <b>Web Server Request</b> <br>
+      <button type="button" onclick="fReq1();">
+        Click me - Test!
+      </button>
+      <br>
+      <button type="button" onclick="fReq2(page);">
+        Click me - Page!
+      </button> <br>
+      <button type="button" onclick="fReq3(data);">
+        Click me - data!
+      </button>
+      <br>
+      <span id="req1">Will be replaced by request test ...</span>
+       <br>  <span id="req2">Will be replaced by request page ...</span>
+        <br>   <span id="req3">Will be replaced by request data ...</span>
+    </p>
+    <h3>HTTP Request against a Server</h3>
+
+   
+
+    <script>
+      var request = new XMLHttpRequest();
+
+     fReq1 = function() {
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            console.log("Request status " + request.status + " " + request.statusText);
+            console.log(request.getAllResponseHeaders());
+            console.log(request.responseText);
+           
+           	var req1 = document.getElementById("req1");
+           
+            }
+            req1.innerHTML = "<pre>" + request.responseText + "</pre>";
+          }
+        };
+        request.open("GET", "http://127.0.0.1:8080/test" , true);
+        request.send();
+      };
+      
+    </script>
+<script>
+     function fReq4() {
+         var request = new XMLHttpRequest();
+      
+            console.log("Request status " + request.status + " " + request.statusText);
+            console.log(request.getAllResponseHeaders());
+            console.log(request.responseText);
+             
+           var req1 = document.getElementById("req1");
+             
+            
+            req1.innerHTML = "<pre>" + request.responseText + "</pre>";
+           
+        request.open("GET", "http://127.0.0.1:8080/test" , true);
+        request.send();
+      };
+      
+    </script>
+  </body>
+</html>
